@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect } from '../react-redux'
 import Count from './Count'
 import * as actions from '../store/Count/actionCreator'
 

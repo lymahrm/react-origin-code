@@ -1,4 +1,4 @@
-import { connect } from 'react-redux'
+import { connect } from '../react-redux'
 import * as actions from '../store/TodoList/actionCreator'
 import TodoList from './TodoList'
 
