@@ -16,6 +16,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://lymahrm.github.io/react-origin-code",
   "eslintConfig": {
     "extends": "react-app"
   },
