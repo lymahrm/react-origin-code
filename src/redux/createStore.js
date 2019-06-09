@@ -2,12 +2,12 @@ const initAction = {
   type: '@@redux/INIT'
 }
 
-function createStore(reducer, initState, enhancer) {
+export default function createStore(reducer, initState, enhancer) {
   if (typeof reducer !== 'function') {
     throw new Error('reducer必须是函数')
   }
 
-  if (typeof initState === 'function' && enhancer === 'undefined') {
+  if (typeof initState === 'function' && enhancer === undefined) {
     enhancer = initState
     initState = undefined
   }
@@ -16,7 +16,7 @@ function createStore(reducer, initState, enhancer) {
     return enhancer(createStore)(reducer, initState)
   }
 
-  let state
+  let state = initState
   let listener = []
   let flag = false
 
@@ -29,7 +29,7 @@ function createStore(reducer, initState, enhancer) {
       throw new Error('action必须是对象')
     }
 
-    if (typeof action.type === 'undefined') {
+    if (action.type === undefined) {
       throw new Error('action的type属性不能为undefined')
     }
 
@@ -57,5 +57,3 @@ function createStore(reducer, initState, enhancer) {
 
   return { getState, dispatch, subscribe }
 }
-
-export default createStore

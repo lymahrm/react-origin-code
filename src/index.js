@@ -3,6 +3,17 @@ import { render } from 'react-dom'
 import { Provider } from './react-redux'
 import store from './store'
 import App from './App'
+import axios from 'axios'
+
+axios.interceptors.response.use(res => {
+  const data = res.data
+
+  if (data.code === 0) {
+    return data.data
+  } else {
+    return Promise.reject(res)
+  }
+})
 
 render(
   <Provider store={store}>

@@ -1,11 +1,16 @@
-import { createStore } from '../redux'
-// import { createStore } from 'redux'
-
+import { createStore, applyMiddleware, compose } from '../redux'
 import reducers from './reducers'
+import thunk from 'redux-thunk'
+import promise from 'redux-promise'
+import logger from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const saga = createSagaMiddleware()
 
 const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(thunk, promise, logger, saga))
 )
 
 export default store

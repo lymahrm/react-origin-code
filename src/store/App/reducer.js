@@ -6,9 +6,6 @@ export default (state = initState, action) => {
 
   switch (action.type) {
     case TYPES.INIT_DATA:
-      Object.assign(newState, action.data)
-      break
-    case TYPES.ADD_COUNT:
       newState.count += action.count
       break
     default:

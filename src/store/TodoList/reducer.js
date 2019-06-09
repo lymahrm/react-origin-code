@@ -5,15 +5,18 @@ export default (state = initState, action) => {
   const newState = JSON.parse(JSON.stringify(state))
 
   switch (action.type) {
-    case TYPES.UPDVAL:
-      newState.value = action.val
+    case TYPES.INIT_DATA:
+      Object.assign(newState, action.data)
       break
-    case TYPES.ADDVAL:
+    case TYPES.ADD_VAL:
       newState.list.push(action.val)
       newState.value = ''
       break
-    case TYPES.DELVAL:
+    case TYPES.DEL_VAL:
       newState.list.splice(action.index, 1)
+      break
+    case TYPES.UPD_VAL:
+      newState.value = action.val
       break
     default:
       break

@@ -1,4 +1,4 @@
-export default function(actions, dispatch) {
+export default function bindActionCreator(actions, dispatch) {
   if (typeof actions !== 'object') {
     throw new Error('actions不是一个对象')
   }

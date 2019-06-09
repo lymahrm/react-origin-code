@@ -1,4 +1,4 @@
-export default function(reducers) {
+export default function combineReducers(reducers) {
   return function(states = {}, action) {
     let res = {}
     Object.keys(reducers).forEach(key => {
