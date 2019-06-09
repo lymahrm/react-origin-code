@@ -2,7 +2,7 @@ import React from 'react'
 import Connect from './Connect'
 import { Consumer } from './context'
 
-export default (mapStateToProps, mapDispatchToProps) => Component => () => {
+export default (mapStateToProps, mapDispatchToProps) => Component => props => {
   if (typeof mapStateToProps !== 'function' && mapStateToProps !== null) {
     throw new Error('mapStateToProps必须是函数或者null')
   }
@@ -21,6 +21,7 @@ export default (mapStateToProps, mapDispatchToProps) => Component => () => {
           Component={Component}
           mapStateToProps={mapStateToProps}
           mapDispatchToProps={mapDispatchToProps || {}}
+          props={props}
         />
       )}
     </Consumer>

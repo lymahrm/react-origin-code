@@ -11,7 +11,13 @@ export default class Connect extends Component {
   }
 
   render() {
-    const { store, mapStateToProps, mapDispatchToProps, Component } = this.props
+    const {
+      store,
+      mapStateToProps,
+      mapDispatchToProps,
+      Component,
+      props
+    } = this.props
     const state =
       typeof mapStateToProps === 'function'
         ? mapStateToProps(store.getState())
@@ -22,6 +28,6 @@ export default class Connect extends Component {
         ? mapDispatchToProps(store.dispatch)
         : bindActionCreator(mapDispatchToProps, store.dispatch)
 
-    return <Component {...state} {...dispatchMethods} />
+    return <Component {...state} {...dispatchMethods} {...props} />
   }
 }
