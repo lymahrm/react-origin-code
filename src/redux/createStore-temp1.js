@@ -2,18 +2,9 @@ const initAction = {
   type: '@@redux/INIT'
 }
 
-export default function createStore(reducer, initState, enhancer) {
+export default function createStore(reducer, initState) {
   if (typeof reducer !== 'function') {
     throw new Error('reducer必须是函数')
-  }
-
-  if (typeof initState === 'function' && enhancer === undefined) {
-    enhancer = initState
-    initState = undefined
-  }
-
-  if (typeof enhancer === 'function') {
-    return enhancer(createStore)(reducer, initState)
   }
 
   let state = initState
@@ -47,7 +38,7 @@ export default function createStore(reducer, initState, enhancer) {
   const subscribe = callback => {
     listener.push(callback)
 
-    return () => listener = listener.filter(fn => fn !== callback)
+    return () =>  listener = listener.filter(fn => fn !== callback)
   }
 
   dispatch(initAction)

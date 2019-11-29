@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import bindActionCreator from '../redux/bindActionCreator'
+import { bindActionCreators } from '../redux'
 
 export default class Connect extends Component {
   componentDidMount() {
@@ -18,15 +18,16 @@ export default class Connect extends Component {
       Component,
       props
     } = this.props
+
     const state =
-      typeof mapStateToProps === 'function'
-        ? mapStateToProps(store.getState())
-        : {}
+      typeof mapStateToProps === 'function' ? 
+      mapStateToProps(store.getState()) : 
+      {}
 
     const dispatchMethods =
-      typeof mapDispatchToProps === 'function'
-        ? mapDispatchToProps(store.dispatch)
-        : bindActionCreator(mapDispatchToProps, store.dispatch)
+      typeof mapDispatchToProps === 'function' ? 
+        mapDispatchToProps(store.dispatch) : 
+        bindActionCreators(mapDispatchToProps, store.dispatch)
 
     return <Component {...state} {...dispatchMethods} {...props} />
   }
